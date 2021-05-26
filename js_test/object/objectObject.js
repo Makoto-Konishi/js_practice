@@ -31,12 +31,13 @@ for(value of Object.values(test)){
 const postal = {
 
   postalCode:'123-4567',
+
   checkPostalCode(){
     
-    const replaced = this.postalCode.replace('-', '');
-    const length = replaced.length;
+    const replaced = this.postalCode.replace('-', '').length;
+    // const length = replaced.length;
 
-    if(length === 7){
+    if(replaced === 7){
       return true;
     }
     return false;
