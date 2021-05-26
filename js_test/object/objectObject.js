@@ -28,19 +28,21 @@ for(value of Object.values(test)){
 // 20
 // 30
 
-const postalCodde = '123-4567';
-const postalCodde_2 = '123-45678';
-function checkPostalCode(string){
-  const replaced = string.replace('-', '');
-  const length = replaced.length;
+const postal = {
 
-  if(length === 7){
-    return true;
+  postalCode:'123-4567',
+  checkPostalCode(){
+    
+    const replaced = this.postalCode.replace('-', '');
+    const length = replaced.length;
+
+    if(length === 7){
+      return true;
+    }
+    return false;
   }
-  return false;
-}
+};
 
-console.log(checkPostalCode(postalCodde));
+// オブジェクトの中のpostalコードを使って判定を行う
+console.log(postal.checkPostalCode());
 // => true
-console.log(checkPostalCode(postalCodde_2));
-// => false
