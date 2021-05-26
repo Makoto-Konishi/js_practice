@@ -31,3 +31,26 @@ for(value of Object.values(test)){
 // 20
 // 30
 ```
+
+## 組み込み関数 in ユーザー定義関数
+- 関数名はcamelCaseまたはsnack_caseで名前をつける.
+- jsは主にcamelCase
+- 動詞 + 名詞
+```js
+const postalCodde = '123-4567';
+const postalCodde_2 = '123-45678';
+function checkPostalCode(string){
+  const replaced = string.replace('-', '');
+  const length = replaced.length;
+
+  if(length === 7){
+    return true;
+  }
+  return false;
+}
+
+console.log(checkPostalCode(postalCodde));
+// => true
+console.log(checkPostalCode(postalCodde_2));
+// => false
+```
