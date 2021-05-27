@@ -41,3 +41,6 @@
     - classをつける
       - `el.classList.add('class')`
       - `el.classList.remove(class)`
+
+## 参考
+- [js講座-dom](http://hakuhin.jp/js/dom.html)
