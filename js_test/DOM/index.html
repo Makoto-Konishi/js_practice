@@ -16,18 +16,35 @@
   <title>Document</title>
 </head>
 <body>
-  <div id = "grand-father">
-    <div id = "parrent">
-      <div id = "target">
-        自分
-      </div>
-    </div>
-  </div>
-  <div id = "divlist">
-    <div class="div1">テスト1</div>
-    <div class="div2">テスト2</div>
-    <div class="div3">テスト3</div>
-  </div>
-  <script src = "appendChild.js"></script>
+  <div id="test"></div>
+  <!-- <button id="target" onclick="change_color()">押してね</button> -->
+  <button id="target">押してね</button> 
+  <script>
+
+    // ① HTMLタグにonclickと設定する
+    // function change_color(){
+    //   const test = document.getElementById('test');
+    //   test.textContent = 'テスト';
+    //   test.classList.add('red');
+    // }
+
+    // ②JSで設定 Element.onclick
+    // document.getElementById('target').onclick = function(){
+    //   const test = document.getElementById('test');
+    //   test.textContent = 'テスト';
+    //   test.classList.add('red');
+    // }
+
+    // ③ イベントリスナー EventTarget.addEventLister()
+    // コールバック関数(アロー関数)をつけてたくさん処理をつけられる
+      const target = document.getElementById('target');
+
+      target.addEventListener('click', ()=> {
+        const test = document.getElementById('test');
+        test.textContent = 'テスト';
+        test.classList.add('red');
+      });
+
+  </script>
 </body>
 </html>

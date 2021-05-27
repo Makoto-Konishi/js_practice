@@ -52,6 +52,22 @@ console.log(anchor);
 - 特定の親ノードの子ノードの最後にノードを追加することができる。
 - 追加しようとしたノードが既に存在していたら、既存のノードが新しいノードで置き換わる。
 
+```html
+<body>
+  <div id = "grand-father">
+    <div id = "parrent">
+      <div id = "target">
+        自分
+      </div>
+    </div>
+  </div>
+  <div id = "divlist">
+    <div class="div1">テスト1</div>
+    <div class="div2">テスト2</div>
+    <div class="div3">テスト3</div>
+  </div>
+</body>
+```
 ```js
 const target = document.getElementById('target');
 const newDiv = document.createElement('div');
@@ -81,3 +97,4 @@ newElement.textContent = '追加しました';
 // div2の前にnewElementを追加する
 targetList.insertBefore(newElement, reference);
 ```
+
