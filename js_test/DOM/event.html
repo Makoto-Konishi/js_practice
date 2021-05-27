@@ -38,8 +38,8 @@
     // ③ イベントリスナー EventTarget.addEventLister()
     // コールバック関数(アロー関数)をつけてたくさん処理をつけられる
       const target = document.getElementById('target');
-
-      target.addEventListener('click', ()=> {
+      // 引数にeをつけるとイベントオブジェクトを取得できる
+      target.addEventListener('click', (e)=> {
         const test = document.getElementById('test');
         test.textContent = 'テスト';
         test.classList.add('red');
