@@ -20,17 +20,41 @@
     });
   }
 
-  promiseTest4(300).then(change => {
-    console.log(change);
+  promiseTest4(300).then(change1 => {
+    console.log(change1);
     // => 200
-    return promiseTest4(change);// Promiseとして再び返して繋げていく(値を受け渡す)
-  }).then(change => {
-    console.log(change);
+    return promiseTest4(change1);// Promiseとして再び返して繋げていく(値を受け渡す)
+  }).then(change2 => {
+    console.log(change2);
     // => 100
   });
 
   // Promise.catch(ng_callback) // NGはcatch  
   // Promise.catch((ng_reason) => {}) // NGはcatch  
+  // 一番最後をcatchとしておけばどこでエラーが出てもエラーを捕まえられる
+
+  // ng も追加
+
+  function promiseTest5(pay){
+    return new Promise((ok, ng) => {
+      if(pay > 100){
+      let change = pay - 100;
+      ok(change);
+      }
+      ng('お金がたりません');
+    });
+  }
+  console.log(promiseTest5(80).catch( e =>{console.log(e)}));
+
+  promiseTest5(180).then(change3 => {
+    console.log(change3);
+    // => 80
+    return promiseTest5(change3);
+  }).then(change4 => {
+    console.log(change4);
+  }).catch(e => console.log(e));
+      // => お金が足りません
+
   </script>
 </body>
 </html>
