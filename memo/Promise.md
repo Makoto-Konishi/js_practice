@@ -106,4 +106,30 @@ promiseTest5(180).then(change3 => {
 
 ```
 
+## サーバーとのやりとりに時間がかかった場合
 
+```js
+// サーバーとのやりとりに時間がかかる処理、かかる時間がわからない
+// 通信速度、サーバー負荷
+// setTimeout
+promiseTest(300, 2);
+console.log(1);
+console.log(2);
+promiseTest(300, 2)
+.then(change1 => promiseTest(change1,3))
+.then(change2 => promiseTest(change2,2))
+.catch(e => console.log(e));
+
+function promiseTest(pay, seconds){
+  return new Promise( (ok, ng) => {
+    setTimeout(()=>{
+      if(pay > 100){
+      let change = pay - 100;
+      console.log(`${seconds}秒は、お釣りは${change}です`);
+      ok(change);
+      }
+      ng('お金がたりません');       
+    }, seconds * 1000)    
+  })
+}
+```
