@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise</title>
+</head>
+<body>
+  
+  <script>
+  // Promiseチェーン
+  // Promise.then(ok_callback, ng_callback)
+  // Promise.then((ok_value) => {}, (ng_reason) => {})
+
+  function promiseTest4(pay){
+    return new Promise(ok => {
+      let change = pay - 100;
+      ok(change);
+    });
+  }
+
+  promiseTest4(300).then(change => {
+    console.log(change);
+    // => 200
+    return promiseTest4(change);// Promiseとして再び返して繋げていく(値を受け渡す)
+  }).then(change => {
+    console.log(change);
+    // => 100
+  });
+
+  // Promise.catch(ng_callback) // NGはcatch  
+  // Promise.catch((ng_reason) => {}) // NGはcatch  
+  </script>
+</body>
+</html>
