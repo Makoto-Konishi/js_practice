@@ -133,3 +133,45 @@ function promiseTest(pay, seconds){
   })
 }
 ```
+
+## async / await
+Promiseをわかりやすく書き換えたもの
+```js
+// 関数
+function test1(){
+  return 'テスト1';
+}
+
+console.log(test1());
+
+// 非同期関数
+// 戻り値 Promise (状態(ok/ng), それぞれの値)→asyncをつけるだけでpromiseを作れる
+// return ... OK
+// throw ... NG
+async function aTest1(){
+  return '非同期関数1';
+}
+console.log(aTest1());
+// => Promise {<fulfilled>: "非同期関数1"}
+console.log(aTest1().then(value => console.log(value)));
+// 非同期関数1
+
+// await ... async の中でのみ使える
+function waiting(seconds){
+  return new Promise(ok => {
+    setTimeout( ()=>{
+      ok();
+    }, 1000 * seconds);
+  });
+}
+
+async function aTest2(){
+  // 1が出てから2秒後に3が出る
+  console.log(1);
+  await waiting(2);
+  console.log(3);
+}
+
+aTest2();
+```
+- [ラーメンで理解するasync/await](https://qiita.com/7tsuno/items/6d5a27ffe9143b35defe)
