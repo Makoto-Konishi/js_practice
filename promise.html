@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise</title>
+</head>
+<body>
+  
+  <script>
+    // 関数
+    function test1(){
+      return '関数1';
+    }
+
+    console.log(test1());
+
+    // promise
+    // ①状態(ok/ng)と値
+    // ②Promiseチェーン
+
+    function promiseTest1(){
+      // new Promiseでpromiseを返せる
+      // promiseの中にcallback関数を返す
+      // 引数が状態になる ok, ng
+      return new Promise((ok) => {
+        ok('プロミス1です');
+      });
+    }
+
+    console.log(promiseTest1());
+
+    const promiseTest2 = new Promise( ok => {
+      ok('プロミス1です');
+    });
+    console.log(promiseTest2);
+
+    function testPromise3(input){
+      return new Promise((ok)=> {
+        ok(`プロミス${input}です`);
+      });
+    }
+
+    console.log(testPromise3('たろう'));
+  </script>
+</body>
+</html>
