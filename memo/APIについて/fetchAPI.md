@@ -33,4 +33,54 @@ console.log(fetchTest2);
 
 ### パース
 [![Image from Gyazo](https://i.gyazo.com/bd29d0b7ab300b9a02172da59c4d197f.png)](https://gyazo.com/bd29d0b7ab300b9a02172da59c4d197f)
-- `resoponse.json()は、resoponse.json.parseとなっており、json→objectになる`
+- `resoponse.json()`は、resoponse.json.parseとなっており、json→objectになる
+
+## データの取得を待ってから取得する
+
+### データを取得できない
+
+- responseの前にconsole.logが走っているため`undefined`
+- →responseが返ってきてから処理をさせる必要がある(データの取得を待ってから処理をする)
+- async, awaitを使う
+
+```js
+const url = 'https://dog.ceo/api/breeds/image/random';
+
+const options = {
+  method: 'GET'
+}
+
+const fetchTest2 = fetch(url, options)
+.then( response =>  response.json() );
+
+console.log(fetchTest2.message);
+// => undefined
+```
+
+### async, await
+
+```js
+const url = 'https://dog.ceo/api/breeds/image/random';
+
+const options = {
+  method: 'GET'
+}
+
+function getDogImage(url, options){
+  return fetch(url, options)
+  .then( response =>  response.json() );
+}
+
+// getDogImageは同期関数なので、非同期関数で待たせる
+// await getDogImageでfetch実行後に動かす
+async function getImage(url, options){
+  const response  = await getDogImage(url, options);
+  // console.log(response.message);
+  const ImageElement = document.createElement('img');
+  ImageElement.src = response.message;
+  document.body.appendChild(ImageElement);
+}
+
+getImage(url, options);
+```
+
