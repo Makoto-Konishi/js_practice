@@ -84,3 +84,63 @@ async function getImage(url, options){
 getImage(url, options);
 ```
 
+## エラー
+- 処理がうまく行かなくても,fetchではokとみなしてしまうので、判定をかける
+
+## okの場合
+
+```js
+// random→rando
+const url = 'https://dog.ceo/api/breeds/image/random';
+const options = {
+  method: 'GET'
+}
+
+// fetchの返り値はPromiseオブジェクト
+// 状態(ok/ng), それぞれの値
+function fetchDogImage(url, options){
+  return fetch(url, options)
+  .then( response => {
+    console.log(response.ok);
+    console.log(response.status);
+    if(response.ok){
+      return response.json();
+      // => true
+      // => 200
+    }
+
+    // okじゃなかったらthrowで例外を作る
+    throw new Error('エラーです');
+  }).catch(e => console.log(e.message));
+}
+```
+
+## エラーの場合
+
+```js
+// random→rando
+const url = 'https://dog.ceo/api/breeds/image/rando';
+const options = {
+  method: 'GET'
+}
+
+// fetchの返り値はPromiseオブジェクト
+// 状態(ok/ng), それぞれの値
+function fetchDogImage(url, options){
+  return fetch(url, options)
+  .then( response => {
+    console.log(response.ok);
+    console.log(response.status);
+    if(response.ok){
+      return response.json();
+    }
+
+    // okじゃなかったらthrowで例外を作る
+    throw new Error('エラーです');
+  }).catch(e => console.log(e.message));
+  // => false
+  // => 404
+  // => エラーです
+}
+```
+
