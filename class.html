@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>class</title>
+</head>
+<body>
+  <script>
+    class Product{
+      // 1ファイル //1クラス
+
+      //プロパティ(値)は
+      // 関数内(constructor)などに
+      // this.xxx = xxx;
+      constructor(productName){ // クラスの中で1回だけ使える関数 必ず実行
+        this.product = productName;
+
+      }
+
+      // メソッド(関数)は functionは不要
+      getProduct(){
+        console.log(this.product);
+      }
+
+      addProduct(item){
+        this.product += item;
+      }
+    }
+
+    // new Class インスタンス化
+    const product = new Product('テスト');
+    // console.log(product.product);
+    // => テスト
+
+    product.getProduct();
+    // => テスト
+    product.addProduct('追加分です');
+    product.getProduct();
+    // テスト追加分です
+
+  </script>
+</body>
+</html>
